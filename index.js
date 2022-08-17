@@ -1,4 +1,5 @@
 import http from "http";
+import Recruitments from "./models/recruitments.cjs";
 
 const hostname = "127.0.0.1";
 const port = 3000;
@@ -31,14 +32,21 @@ const server = http.createServer((req, res) => {
         .on("data", (chunk) => {
           body.push(chunk);
         })
-        .on("end", () => {
+        .on("end", async () => {
           body = Buffer.concat(body).toString();
           const data = JSON.parse(body);
           const companysData = recruitments.filter((recruitment) => {
-            recruitment.회사_id === data.회사_id;
+            recruitment.companysId === data.companysId;
           });
-
+          console.log(data.companysId);
           if (companysData === []) {
+            await Recruitments.create({
+              companysId: data.companysId,
+              position: data.position,
+              compensation: data.compensation,
+              contents: data.contents,
+              techStack: data.techStack,
+            });
             data.채용공고_id = 0;
             recruitments.push(data);
           } else {

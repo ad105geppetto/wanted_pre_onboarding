@@ -20,6 +20,13 @@
   },
   "homepage": "https://github.com/ad105geppetto/wanted_pre_onboarding#readme",
   "dependencies": {
-    "nodemon": "^2.0.19"
+    "dotenv": "^16.0.1",
+    "mysql2": "^2.3.3",
+    "node-fetch": "^2.6.7",
+    "nodemon": "^2.0.19",
+    "sequelize": "^6.21.3"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.4.1"
   }
 }
