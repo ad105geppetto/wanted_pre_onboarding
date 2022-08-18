@@ -1,13 +1,11 @@
 "use strict";
+
 const fs = require("fs");
 const path = require("path");
 const Sequelize = require("sequelize");
-const Users = require("./users.cjs");
-const Companys = require("./companys.cjs");
-const Recruitments = require("./recruitments.cjs");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
-const config = require(__dirname + "/../config/config.cjs")[env];
+const config = require(__dirname + "/../config/config.js")[env];
 const db = {};
 
 let sequelize;
@@ -22,7 +20,7 @@ fs.readdirSync(__dirname)
     return file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js";
   })
   .forEach((file) => {
-    const model = require(path.join(__dirname, file))(sequelize, DataTypes);
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });
 
@@ -34,17 +32,5 @@ Object.keys(db).forEach((modelName) => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-
-db.User = Users;
-db.Companys = Companys;
-db.Recruitments = Recruitments;
-
-Users().init(sequelize);
-Companys().init(sequelize);
-Recruitments().init(sequelize);
-
-Users.associate(db);
-Companys.associate(db);
-Recruitments.associate(db);
 
 module.exports = db;
