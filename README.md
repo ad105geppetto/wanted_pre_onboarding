@@ -19,6 +19,8 @@
 
 **DB 스키마**
 
+![jpg_1](./public/img/1.png)
+
 **API 문서**
 
 ## 🏷 Requirements
