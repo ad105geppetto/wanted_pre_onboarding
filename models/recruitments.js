@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasOne(models.details, {
+        foreignKey: "id",
+      });
       this.belongsTo(models.companys);
       this.belongsToMany(models.users, {
         through: "users_recuitments",
@@ -21,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
       companyId: DataTypes.INTEGER,
       position: DataTypes.STRING,
       compensation: DataTypes.STRING,
-      contents: DataTypes.STRING,
       techStack: DataTypes.STRING,
     },
     {

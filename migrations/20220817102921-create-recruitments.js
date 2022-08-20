@@ -17,9 +17,6 @@ module.exports = {
       compensation: {
         type: Sequelize.STRING,
       },
-      contents: {
-        type: Sequelize.STRING,
-      },
       techStack: {
         type: Sequelize.STRING,
       },
